@@ -11,6 +11,6 @@ module.exports = {
   rules: {
     eqeqeq: 'error',
     semi: [2, 'never'],
-    'comma-dangle': ['error', 'always'],
+    'comma-dangle': ['error', 'always-multiline'],
   },
 }
