@@ -1,9 +1,9 @@
 {
   "type": "module",
   "scripts": {
-    "start": "npm run build:live",
+    "start": "npm run build && node dist/main.js",
     "build": "tsc -p .",
-    "build:live": "nodemon --watch '*.ts' --exec \"ts-node\" src/main.ts",
+    "build:live": "nodemon --watch '*.ts' --exec \"npm run build || node dist/main.js\" ",
     "prettier:base": "prettier --parser typescript --single-quote",
     "prettier:check": "npm run prettier:base -- --list-different \"src/**/*.{ts,tsx}\"",
     "prettier:write": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
@@ -15,6 +15,8 @@
     "@stryker-mutator/core": "^4.3.1",
     "@stryker-mutator/jest-runner": "^4.3.1",
     "@types/jest": "^26.0.20",
+    "@types/koa": "^2.11.6",
+    "@types/koa-router": "^7.4.1",
     "@types/node": "^14.6.4",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
@@ -27,5 +29,9 @@
     "ts-node": "^9.0.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "koa": "^2.13.1",
+    "koa-router": "^10.0.0"
   }
 }

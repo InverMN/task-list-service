@@ -5,6 +5,7 @@ export default {
     "**/?(*.)+(spec|test).+(ts|tsx|js)",
   ],
   transform: {
+    "^.+\\.jsx?$": "babel-jest",
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
 }
