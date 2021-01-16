@@ -1,21 +1,26 @@
 {
+  "type": "module",
   "scripts": {
     "start": "npm run build:live",
     "build": "tsc -p .",
-    "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/main.ts",
+    "build:live": "nodemon --watch '*.ts' --exec \"ts-node\" src/main.ts",
     "prettier:base": "prettier --parser typescript --single-quote",
     "prettier:check": "npm run prettier:base -- --list-different \"src/**/*.{ts,tsx}\"",
     "prettier:write": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
-    "lint": "eslint \"src/**\""
+    "lint": "eslint \"src/**\"",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.20",
     "@types/node": "^14.6.4",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
     "eslint": "^7.9.0",
     "eslint-plugin-react": "^7.20.6",
+    "jest": "^26.6.3",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.1",
+    "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.0.2"
