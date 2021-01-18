@@ -6,19 +6,18 @@
     "script:append-import-extensions": "node ./scripts/append-extensions-to-import-paths.js",
 
     "build": "yarn run build:code",
-    "build:types": "tsc",
+    "build:types": "tsc --emitDeclarationOnly",
     "build:code": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline && yarn run script:append-import-extensions",
     "build:all": "yarn run build:types && yarn run build:code",
 
     "test": "yarn run test:types && yarn run test:units",
-    "test:types": "tsc",
+    "test:types": "tsc --noEmit",
     "test:units": "jest",
     "test:mutants": "stryker run",
     "test:dev": "jest --watchAll",
     "test:all": "yarn run test:types && yarn run test:units && yarn run test:mutants",
 
     "lint": "eslint \"src/**\"",
-    "prettier": "yarn run prettier:base",
     "prettier:base": "prettier --parser typescript --single-quote",
     "prettier:check": "npm run prettier:base -- --list-different \"src/**/*.{ts,tsx}\"",
     "prettier:write": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
