@@ -1,6 +1,7 @@
 import Router from 'koa-router'
 import { DuplicatedEndpointError } from './errors/index'
-import { Endpoint, HttpMethod } from './index'
+import { Endpoint } from './index'
+import { HttpMethod } from './types'
 
 export class Controller {
   private linkedEndpoints: Endpoint[]

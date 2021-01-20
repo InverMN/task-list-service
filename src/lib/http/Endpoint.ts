@@ -1,4 +1,4 @@
-import { HttpMethod, RouteCallback } from './index'
+import { HttpMethod, RouteCallback } from './types'
 
 export class Endpoint {
   private httpMethod: HttpMethod = 'GET'
