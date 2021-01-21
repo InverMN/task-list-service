@@ -18,7 +18,7 @@ function appendExtensions(filePath) {
     if(error) throw error
 
     if(!data.match(/import .* from/g) && !data.match(/export .* from/g)) return
-    let newData = data.replace(/(import .* from\s+['"])(\.\/)(.*)(?=['"])/g, '$1$2$3.js')
+    let newData = data.replace(/(import .* from\s+['"])(\.*\/)(.*)(?=['"])/g, '$1$2$3.js')
     let finalData = newData.replace(/(export .* from\s+['"])(\.\/)(.*)(?=['"])/g, '$1$2$3.js')
 
     fs.writeFile(filePath, finalData, error => { 
