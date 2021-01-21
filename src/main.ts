@@ -1,27 +1,11 @@
-import {
-  ApplicationServer,
-  Controller,
-  Endpoint,
-} from './lib/http/index'
+import Koa from 'koa'
+import { Interpreter } from './lib/http/index'
+import supertest from 'supertest'
 
-const application = new ApplicationServer()
-const rootController = new Controller()
-application.setRootController(rootController)
+const server = new Koa()
+server.use(async (ctx) => {
+  const context = Interpreter.httpIntoContext(ctx)
+  console.log(context)
+})
 
-const homepageEndpoint = new Endpoint().setCallback(
-  (context) => (context.body = 'HOMEPAGE!'),
-)
-rootController.link(homepageEndpoint)
-
-const restApiController = new Controller()
-const usersController = new Controller()
-const getUsersEndpoint = new Endpoint(
-  'GET',
-  '/',
-  (context) => (context.body = []),
-)
-usersController.link(getUsersEndpoint)
-restApiController.merge('/users', usersController)
-
-rootController.merge('/api/v1', restApiController)
-application.start(3000)
+supertest(server.listen()).get('/').end()
