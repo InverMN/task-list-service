@@ -10,7 +10,7 @@
     "build:all": "yarn run build:types && yarn run build:code",
     "test": "yarn run test:units",
     "test:types": "tsc --noEmit",
-    "test:units": "jest",
+    "test:units": "jest --notify",
     "test:mutants": "stryker run",
     "test:dev": "jest --watchAll",
     "test:all": "yarn run test:types && yarn run test:units && yarn run test:mutants",
