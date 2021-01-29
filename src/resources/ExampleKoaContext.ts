@@ -18,6 +18,10 @@ const koaContext: any = {
             acceptLanguage: "en-US,en;q=0.9",
             cookie: "PGADMIN_LANGUAGE=en; pga4_session=39039857-3817-482d-917a-44408862d840!3SYYuvhK1so+MXTHdl+3tLLaKB4=",
         },
+        body: {
+            username: "Inver",
+            password: "qwerty",
+        },
     },
     response: {
         status: 404,
