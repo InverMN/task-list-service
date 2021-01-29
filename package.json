@@ -6,7 +6,7 @@
     "script:append-import-extensions": "node ./scripts/append-extensions-to-import-paths.js",
     "build": "yarn run build:code",
     "build:types": "tsc --emitDeclarationOnly",
-    "build:code": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline && yarn run script:append-import-extensions",
+    "build:code": "rm -r dist && tsc && yarn run script:append-import-extensions",
     "build:all": "yarn run build:types && yarn run build:code",
     "test": "yarn run test:units",
     "test:types": "tsc --noEmit",
