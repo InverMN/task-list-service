@@ -2,6 +2,7 @@ import Router from 'koa-router'
 import { DuplicatedEndpointError } from './errors/index'
 import { Endpoint } from './index'
 import { HttpMethod } from './types'
+import KoaBody from 'koa-body'
 
 export class Controller {
   private linkedEndpoints: Endpoint[]
@@ -32,6 +33,7 @@ export class Controller {
     // @ts-ignore
     this.router[routeMethod](
       endpoint.getPath(),
+      KoaBody(),
       endpoint.getCallback(),
     )
   }
