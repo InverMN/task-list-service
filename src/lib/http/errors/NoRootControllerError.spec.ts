@@ -2,7 +2,7 @@ import { NoRootControllerError } from './index'
 
 describe('NoRootControllerError', () => {
   it('initializes new instance', () => {
-    expect(new NoRootControllerError()).not.toBeUndefined()
+    expect(new NoRootControllerError()).toBeDefined()
   })
 
   it('has name and message properties', () => {

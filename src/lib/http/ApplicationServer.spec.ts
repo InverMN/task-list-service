@@ -4,7 +4,7 @@ import { AddressInfo } from 'net'
 
 describe('Application Server', () => {
   it('creates new instance', () => {
-    expect(new ApplicationServer()).not.toBeUndefined()
+    expect(new ApplicationServer()).toBeDefined()
   })
 
   it('returns response', () => {
@@ -49,7 +49,7 @@ describe('Application Server', () => {
   it('creates default root controller', () => {
     const application = new ApplicationServer()
     application.createRootController()
-    expect(application.getRootController()).not.toBeUndefined()
+    expect(application.getRootController()).toBeDefined()
   })
 
   it("listens to root controller's endpoints", () => {

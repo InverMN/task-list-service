@@ -2,11 +2,11 @@ import { Result, Ok, Err } from './index'
 
 describe('Result', () => {
   it('is present', () => {
-    expect(Result).not.toBeUndefined()
+    expect(Result).toBeDefined()
   })
 
   it('initializes new instance', () => {
-    expect(new Result()).not.toBeUndefined()
+    expect(new Result()).toBeDefined()
   })
 
   it('is not ok when payload is not present', () => {
@@ -51,7 +51,7 @@ describe('Result', () => {
 
 describe('Ok', () => {
   it('creates Result instance', () => {
-    expect(Ok(true)).not.toBeUndefined()
+    expect(Ok(true)).toBeDefined()
   })
 
   it('returns always ok result type', () => {
@@ -62,7 +62,7 @@ describe('Ok', () => {
 
 describe('Err', () => {
   it('creates Result instance', () => {
-    expect(Err(new Error('custom error'))).not.toBeUndefined()
+    expect(Err(new Error('custom error'))).toBeDefined()
   })
 
   it('returns always Err result type', () => {

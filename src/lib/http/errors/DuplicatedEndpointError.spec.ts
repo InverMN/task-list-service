@@ -2,7 +2,7 @@ import { DuplicatedEndpointError } from './index'
 
 describe('Duplicated Endpoint Error', () => {
   it('initializes new instance', () => {
-    expect(new DuplicatedEndpointError()).not.toBeUndefined()
+    expect(new DuplicatedEndpointError()).toBeDefined()
   })
 
   it('has name and message properties', () => {

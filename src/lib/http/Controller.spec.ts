@@ -2,7 +2,7 @@ import { Controller, Endpoint } from './index'
 
 describe('Controller', () => {
   it('creates new instance', () => {
-    expect(new Controller()).not.toBeUndefined()
+    expect(new Controller()).toBeDefined()
   })
 
   it('adds new endpoint', () => {
@@ -53,7 +53,7 @@ describe('Controller', () => {
 
   it('initializes with empty router', () => {
     const controller = new Controller()
-    expect(controller.getRouter()).not.toBeUndefined()
+    expect(controller.getRouter()).toBeDefined()
   })
 
   it("attaches new endpoint to inner controller's router", () => {
