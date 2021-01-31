@@ -1,3 +1,5 @@
-export { Service, ServiceAction } from './Service'
+export { Service } from './Service'
 export { Context } from './Context'
 export { Result, Ok, Err } from './Result'
+export { ServiceTask } from './ServiceAction'
+export { Protector } from './Protector'
