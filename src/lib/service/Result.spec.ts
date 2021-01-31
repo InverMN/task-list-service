@@ -47,6 +47,12 @@ describe('Result', () => {
     const resultB = new Result('string!')
     expect(resultB.extract()).toEqual('string!')
   })
+
+  it('throws error when performing report method on err result type', () => {
+    const result = new Result(undefined, new Error())
+    const reportInvocation = () => result.report()
+    expect(reportInvocation).toThrow(Error)
+  })
 })
 
 describe('Ok', () => {

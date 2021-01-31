@@ -17,6 +17,10 @@ export class Result<T> {
   public extract(): T | undefined {
     return this.payload
   }
+
+  public report(): void {
+    if(this.isErr()) throw this.error
+  }
 }
 
 export function Ok<T>(payload: T): Result<T> {
