@@ -1,4 +1,5 @@
 import { Request } from './index'
+import ExampleKoaContext from '../../resources/ExampleKoaContext'
 
 describe('Request', () => {
     it('has constructor', () => {
@@ -39,5 +40,13 @@ describe('Request', () => {
         expect(request.getHeader('Host')).toEqual('localhost:8080')
         expect(Array.from(request.getHeadersAll().keys())).toEqual(['Host', 'Connection'])
         expect(Array.from(request.getHeadersAll().values())).toEqual(['localhost:8080', 'keep-alive'])
+    })
+
+    it('can be constructed from koa context', () => {
+      const request = Request.fromKoaContext(ExampleKoaContext)
+      expect(request.getMethod()).toEqual('GET')
+      expect(request.getPath()).toEqual('/')
+      console.log(request.getHeadersAll())
+      expect(request.getHeader('Connection')).toEqual('keep-alive')
     })
 })

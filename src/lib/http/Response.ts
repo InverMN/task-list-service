@@ -31,6 +31,10 @@ export class Response {
         return this.body
     }
 
+    public getJsonBody(): any {
+        return JSON.parse(this.body)
+    }
+
     public setHeader(key: string, content: string): Response {
         this.headers.set(key, content)
         return this
@@ -42,5 +46,23 @@ export class Response {
 
     public getHeadersAll(): Map<string, string> {
         return this.headers
+    }
+
+    public getHeadersAsObject(): any {
+        const object: any = {}
+        this.headers.forEach((value, key) => {
+            object[Response.kebabToCamelCase(key)] = value
+        })
+        return object
+    }
+
+    private static kebabToCamelCase(name: string) {
+        return name.split('').map((letter: string, index: number) => {
+            if(index === 0) return letter.toLowerCase()
+            else {
+                if(letter === '-') return ''
+                else return letter
+            }
+        }).join('')
     }
 }

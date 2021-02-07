@@ -1,3 +1,6 @@
+import { Context } from 'koa'
+import { ServiceTask, Result } from '../service/index'
+import { Response, Request } from './index'
 import { HttpMethod, RouteCallback } from './types'
 
 export class Endpoint {
@@ -59,4 +62,33 @@ export class Endpoint {
       endpointsB.some((b) => b.isDuplicateOf(a)),
     )
   }
+
+  public useService<I,O>(task: ServiceTask<I,O>, mapRequest: (request: Request) => I, mapResponse: (result: Result<O | undefined>) => Response): this {
+    this.setCallback((context: Context) => {
+      const request = Request.fromKoaContext(context)
+      const taskInput = mapRequest(request)
+      const taskOutput = task.perform(taskInput)
+      const response = mapResponse(taskOutput)
+      context.status = response.getStatusCode()
+      context.message = response.getStatusMessage()
+      context.body = response.getBody()
+      // context.body = "JD"
+      // context = Endpoint.mergeResponseToContext(context, response)
+    })
+    return this
+  }
+
+//   private static mergeResponseToContext(context : Context, response: Response): Context {
+//     console.log(`
+// Merging response to context:
+//     response: ${JSON.stringify(response)}
+//     `)
+//     return {
+//       ...context,
+//       status: response.getStatusCode(),
+//       message: response.getStatusMessage(),
+//       header: response.getHeadersAsObject(),
+//       body: response.getBody(),
+//     }
+//   }
 }

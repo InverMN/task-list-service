@@ -1,3 +1,4 @@
+import { Context } from "koa"
 import { HttpMethod } from "./types"
 
 export class Request {
@@ -33,8 +34,17 @@ export class Request {
         return this.body
     }
 
+    public getJsonBody(): any {
+        return JSON.parse(this.body)
+    }
+
     public setHeader(key: string, content: string): Request {
         this.headers.set(key, content)
+        return this
+    }
+
+    public setManyHeaders(headers: Map<string, string>): this {
+        this.headers = headers
         return this
     }
 
@@ -44,5 +54,30 @@ export class Request {
 
     public getHeadersAll(): Map<string, string> {
         return this.headers
+    }
+
+    public static fromKoaContext(context: Context): Request {
+        return new Request()
+            .setMethod(context.request.method as HttpMethod)
+            .setPath(context.request.url)
+            .setBody(JSON.stringify(context.request.body))
+            .setManyHeaders(Request.headersFromKoaHeaders(context.request.header))
+    }
+
+    private static camelToKebabCase(name: string) {
+        return name.split('').map((letter: string, index: number) => {
+            if(index === 0) return letter.toUpperCase()
+            else {
+                if(letter === letter.toUpperCase()) return `-${letter}`
+                else return letter
+            }
+        }).join('')
+    }
+
+    private static headersFromKoaHeaders(headers: any): Map<string, string> {
+        const map = new Map<string,string>()
+        for(const prop in headers)
+            map.set(Request.camelToKebabCase(prop), headers[prop])
+        return map
     }
 }
